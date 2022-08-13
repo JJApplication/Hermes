@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="zh-CN" style="max-width: 600px;margin: 0 auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Renj bot</title>
+</head>
+<body style="margin: 0;padding: 0;max-width: 600px;">
+    <div style="background-color: white;padding: 15px">
+        <h1 style="font-weight: bold;font-size: 45px;color: #495a80;margin-top: 10px;margin-bottom: 15px">Renj<i style="font-style: normal">.</i>io</h1>
+        <h3 style="font-size: 15px;color: #a0a0a0;margin: 0">博客订阅服务</h3>
+        <p style="font-size: 24px;">你好，这是本月更新的文章</p>
+        <div style="margin-top: 0;font-size: 15px;color: #444444">
+            {{ range . -}}
+            <li style="margin-bottom: 2px"><a href="http://renj.io/blog/post/{{ .Url }}" style="color: #378de5;text-decoration: none;font-size: 16px">{{ .Title }}</a></li>
+            {{ end }}
+        </div>
+        <div style="margin-top: 30px">
+            <p style="color: #666666;margin-bottom: 40px">如果你没有订阅此服务，请忽略此邮件</p>
+            <p style="text-align: center;color: #ffffff;margin-bottom: 0">
+                <span style="background-color: #495a80;padding: 5px 10px;color: #ffffff;font-weight: bold;font-size: 14px">Renj<i style="font-style: normal">.</i>io Bot</span>
+            </p>
+            <p style="text-align: center;margin-top: 20px;color: #444444">copyright@Landers <a href="http://renj.io" style="color: #378de5;text-decoration: none">renj.io</a></p>
+        </div>
+    </div>
+</body>
+</html>
