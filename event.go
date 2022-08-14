@@ -45,7 +45,7 @@ func eventPing() uds.Func {
 			Error: "",
 			Data:  "pong",
 			From:  Hermes,
-			To:    []string{"sb"},
+			To:    []string{req.From},
 		}); err != nil {
 			logger.ErrorF("event [%s] response error: %s", c.Operation(), err.Error())
 		}
@@ -59,6 +59,7 @@ func eventSend() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		m := newSmtp(reqBody)
 		if reqBody.Type == smtp.Html {
@@ -88,6 +89,7 @@ func eventSendSync() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		runSyncTask(func() {
 			m := newSmtp(reqBody)
@@ -173,6 +175,7 @@ func eventSendMgek() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		m := newSmtp(reqBody)
 		body := renderTemplate(reqBody.Message, TmplMgek)
@@ -197,6 +200,7 @@ func eventSendAlarm() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		m := newSmtp(reqBody)
 		body := renderTemplate(reqBody.Message, TmplAlarm)
@@ -220,6 +224,7 @@ func eventSendAlarmHtml() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		m := newSmtp(reqBody)
 		body := renderTemplate(reqBody.Message, TmplAlarmHtml)
@@ -248,6 +253,7 @@ func eventSendBlogSub() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		m := newSmtp(reqBody)
 		body := renderTemplate(reqBody.Message, TmplBlog)
@@ -272,6 +278,7 @@ func eventSendHomeSub() uds.Func {
 		err := json.Json.UnmarshalFromString(req.Data, &reqBody)
 		if err != nil {
 			logger.ErrorF("event [%s] parse request error: %s", c.Operation(), err.Error())
+			return
 		}
 		m := newSmtp(reqBody)
 		body := renderTemplate(reqBody.Message, TmplHome)
