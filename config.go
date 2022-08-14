@@ -20,3 +20,8 @@ const (
 	Nickname    = "Nickname"
 	UnixAddress = "UnixAddress"
 )
+
+const (
+	// MaxRecvSize 最大接收的数据大小5mb
+	MaxRecvSize = 5 << 20
+)

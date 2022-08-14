@@ -54,6 +54,7 @@ func (h *HermesCore) Init() {
 	mailConfig = *h.Mail
 	// init uds
 	h.UdsServer.Name = h.EnvLoader.Get(UnixAddress).Raw()
+	h.UdsServer.Option.MaxSize = MaxRecvSize
 	h.UdsServer.Option.AutoCheck = false
 	h.UdsServer.Option.AutoRecover = true
 	h.UdsServer.Option.LogTrace = true
